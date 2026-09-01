@@ -1,1 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Site educativo interativo sobre Funções Polinomiais de 1º e 2º Graus">
+    <title>MathLab | Funções Polinomiais Interativas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="logo-icon">∫</span>
+            <span class="logo-text">Math<span class="accent">Lab</span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Início</a></li>
+            <li><a href="#teoria">Teoria</a></li>
+            <li><a href="#laboratorio">Laboratório</a></li>
+            <li><a href="#contextos">Contextos</a></li>
+            <li><a href="#desafio">Desafio</a></li>
+        </ul>
+        <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+    </nav>
 
+    <!-- ===== HERO ===== -->
+    <header id="home" class="hero">
+        <canvas id="bgCanvas"></canvas>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Funções <span class="gradient-text">Polinomiais</span>
+            </h1>
+            <p class="hero-subtitle">
+                Explore, visualize e domine as funções de <strong>1º</strong> e <strong>2º</strong> graus
+                através de modelos interativos e aplicações no mundo real.
+            </p>
+            <div class="hero-buttons">
+                <a href="#laboratorio" class="btn btn-primary">🚀 Ir para o Laboratório</a>
+                <a href="#teoria" class="btn btn-outline">📚 Aprender Teoria</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </header>
+
+    <!-- ===== TEORIA ===== -->
+    <section id="teoria" class="section teoria">
+        <div class="container">
+            <h2 class="section-title">📐 Fundamentos <span class="accent">Matemáticos</span></h2>
+            <p class="section-subtitle">Entenda a essência das funções polinomiais</p>
+
+            <div class="cards-grid">
+                <!-- Card 1º Grau -->
+                <div class="card glass-card fade-in">
+                    <div class="card-icon">📈</div>
+                    <h3>Função de 1º Grau</h3>
+                    <div class="formula">f(x) = ax + b</div>
+                    <p>Representa uma <strong>reta</strong> no plano cartesiano. O gráfico é uma linha que cruza os eixos dependendo dos coeficientes.</p>
+                    <ul class="coeff-list">
+                        <li><span class="coeff a">a</span> → Inclinação da reta (taxa de variação)</li>
+                        <li><span class="coeff b">b</span> → Onde a reta corta o eixo Y (intercepto)</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2º Grau -->
+                <div class="card glass-card fade-in">
+                    <div class="card-icon">🌊</div>
+                    <h3>Função de 2º Grau</h3>
+                    <div class="formula">f(x) = ax² + bx + c</div>
+                    <p>Desenha uma <strong>parábola</strong> no plano cartesiano. Sua forma depende dos três coeficientes.</p>
+                    <ul class="coeff-list">
+                        <li><span class="coeff a">a</span> → Concavidade (para cima se a&gt;0, para baixo se a&lt;0)</li>
+                        <li><span class="coeff b">b</span> → Inclinação na origem e posição do vértice</li>
+                        <li><span class="coeff c">c</span> → Onde a parábola corta o eixo Y</li>
+                    </ul>
+                </div>
+
+                <!-- Card Discriminante -->
+                <div class="card glass-card fade-in">
+                    <div class="card-icon">🎯</div>
+                    <h3>Discriminante (Δ)</h3>
+                    <div class="formula">Δ = b² − 4ac</div>
+                    <p>O valor de Δ determina quantas <strong>raízes reais</strong> a função do 2º grau possui:</p>
+                    <ul class="coeff-list">
+                        <li><span class="coeff delta">Δ &gt; 0</span> → Duas raízes reais distintas</li>
+                        <li><span class="coeff delta">Δ = 0</span> → Uma raiz real (dupla)</li>
+                        <li><span class="coeff delta">Δ &lt; 0</span> → Nenhuma raiz real</li>
+                    </ul>
+                </div>
+
+                <!-- Card Vértice -->
+                <div class="card glass-card fade-in">
+                    <div class="card-icon">⭐</div>
+                    <h3>Vértice da Parábola</h3>
+                    <div class="formula">V = (xᵥ , yᵥ)</div>
+                    <p>O ponto mais alto ou mais baixo da parábola, onde ocorre o valor máximo ou mínimo da função.</p>
+                    <ul class="coeff-list">
+                        <li><span class="coeff x">xᵥ</span> = −b / 2a</li>
+                        <li><span class="coeff y">yᵥ</span> = −Δ / 4a</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== LABORATÓRIO ===== -->
+    <section id="laboratorio" class="section laboratorio">
+        <div class="container">
+            <h2 class="section-title">🧪 Laboratório <span class="accent">Interativo</span></h2>
+            <p class="section-subtitle">Arraste os controles e veja a mágica acontecer em tempo real</p>
+
+            <div class="lab-wrapper">
+                <!-- Canvas -->
+                <div class="canvas-container glass-card">
+                    <canvas id="graphCanvas"></canvas>
+                    <div class="function-display">
+                        <span id="functionLabel">f(x) = </span>
+                    </div>
+                </div>
+
+                <!-- Controles -->
+                <div class="controls glass-card">
+                    <h3>⚙️ Coeficientes</h3>
+
+                    <div class="slider-group">
+                        <label for="sliderA">
+                            <span class="coeff a">a</span> = <span id="valA" class="value">1</span>
+                        </label>
+                        <input type="range" id="sliderA" min="-5" max="5" step="0.1" value="1">
+                    </div>
+
+                    <div class="slider-group">
+                        <label for="sliderB">
+                            <span class="coeff b">b</span> = <span id="valB" class="value">0</span>
+                        </label>
+                        <input type="range" id="sliderB" min="-10" max="10" step="0.1" value="0">
+                    </div>
+
+                    <div class="slider-group">
+                        <label for="sliderC">
+                            <span class="coeff c">c</span> = <span id="valC" class="value">0</span>
+                        </label>
+                        <input type="range" id="sliderC" min="-10" max="10" step="0.1" value="0">
+                    </div>
+
+                    <div class="properties">
+                        <h4>📊 Propriedades</h4>
+                        <div class="prop-item">
+                            <span>Tipo:</span>
+                            <strong id="propType">2º Grau</strong>
+                        </div>
+                        <div class="prop-item">
+                            <span>Concavidade:</span>
+                            <strong id="propConcavity">Para cima ↑</strong>
+                        </div>
+                        <div class="prop-item">
+                            <span>Vértice:</span>
+                            <strong id="propVertex">(0, 0)</strong>
+                        </div>
+                        <div class="prop-item">
+                            <span>Δ (Delta):</span>
+                            <strong id="propDelta">0</strong>
+                        </div>
+                        <div class="prop-item">
+                            <span>Raízes:</span>
+                            <strong id="propRoots">x = 0</strong>
+                        </div>
+                    </div>
+
+                    <button id="resetBtn" class="btn btn-outline">🔄 Resetar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTEXTOS ===== -->
+    <section id="contextos" class="section contextos">
+        <div class="container">
+            <h2 class="section-title">🌍 Aplicações no <span class="accent">Mundo Real</span></h2>
+            <p class="section-subtitle">Veja como essas funções modelam situações do cotidiano</p>
+
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="fisica">🚀 Física</button>
+                <button class="tab-btn" data-tab="economia">💰 Economia</button>
+                <button class="tab-btn" data-tab="engenharia">🏗️ Engenharia</button>
+            </div>
+
+            <div class="tab-content">
+                <!-- Física -->
+                <div class="tab-pane active" id="fisica">
+                    <div class="context-card glass-card">
+                        <h3>Lançamento de Projéteis</h3>
+                        <p>A altura de um objeto lançado verticalmente segue uma <strong>função do 2º grau</strong>:</p>
+                        <div class="formula">h(t) = −5t² + v₀t + h₀</div>
+                        <p><strong>Problema:</strong> Um foguete de brinquedo é lançado do solo com velocidade inicial de 20 m/s. Qual a altura máxima atingida e em que momento ele volta ao solo?</p>
+                        <button class="btn btn-primary reveal-btn" data-target="sol-fisica">💡 Revelar Solução</button>
+                        <div class="solution hidden" id="sol-fisica">
+                            <h4>Solução Passo a Passo:</h4>
+                            <ol>
+                                <li>Função: h(t) = −5t² + 20t (com h₀ = 0)</li>
+                                <li>Coeficientes: a = −5, b = 20, c = 0</li>
+                                <li>Vértice (altura máxima): tᵥ = −b/2a = −20/(2·−5) = <strong>2 segundos</strong></li>
+                                <li>h(2) = −5(4) + 20(2) = −20 + 40 = <strong>20 metros</strong></li>
+                                <li>Raízes (volta ao solo): −5t² + 20t = 0 → t(−5t + 20) = 0 → t = 0 ou t = <strong>4 segundos</strong></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Economia -->
+                <div class="tab-pane" id="economia">
+                    <div class="context-card glass-card">
+                        <h3>Lucro Máximo de uma Empresa</h3>
+                        <p>O lucro pode ser modelado por uma <strong>função quadrática</strong> quando há custos variáveis e receita proporcional à quantidade vendida:</p>
+                        <div class="formula">L(q) = −2q² + 100q − 800</div>
+                        <p><strong>Problema:</strong> Uma fábrica tem lucro L(q) = −2q² + 100q − 800, onde q é a quantidade produzida. Quantas unidades devem ser produzidas para maximizar o lucro?</p>
+                        <button class="btn btn-primary reveal-btn" data-target="sol-economia">💡 Revelar Solução</button>
+                        <div class="solution hidden" id="sol-economia">
+                            <h4>Solução Passo a Passo:</h4>
+                            <ol>
+                                <li>Coeficientes: a = −2, b = 100, c = −800</li>
+                                <li>Como a &lt; 0, a parábola tem concavidade para baixo → há lucro máximo</li>
+                                <li>Quantidade ótima: qᵥ = −b/2a = −100/(2·−2) = <strong>25 unidades</strong></li>
+                                <li>Lucro máximo: L(25) = −2(625) + 100(25) − 800 = −1250 + 2500 − 800 = <strong>R$ 450</strong></li>
+                                <li>Ponto de nivelamento (L=0): Δ = 10000 − 6400 = 3600 → √Δ = 60</li>
+                                <li>q = (−100 ± 60)/(−4) → q₁ = 10 e q₂ = 40 (empresa lucra entre 10 e 40 unidades)</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Engenharia -->
+                <div class="tab-pane" id="engenharia">
+                    <div class="context-card glass-card">
+                        <h3>Design de Arcos e Pontes</h3>
+                        <p>A forma de muitos arcos arquitetônicos segue uma <strong>parábola</strong>, distribuindo forças de maneira eficiente:</p>
+                        <div class="formula">y = −0,1x² + 4</div>
+                        <p><strong>Problema:</strong> Um arco de ponte tem formato parabólico dado por y = −0,1x² + 4 (em metros). Qual a altura máxima do arco e a distância entre seus apoios?</p>
+                        <button class="btn btn-primary reveal-btn" data-target="sol-engenharia">💡 Revelar Solução</button>
+                        <div class="solution hidden" id="sol-engenharia">
+                            <h4>Solução Passo a Passo:</h4>
+                            <ol>
+                                <li>Coeficientes: a = −0,1, b = 0, c = 4</li>
+                                <li>Altura máxima (vértice): yᵥ = −Δ/4a = −(0 − 4·(−0,1)·4)/(4·−0,1) = 1,6/(−0,4) → <strong>4 metros</strong></li>
+                                <li>Apoios no solo (y = 0): −0,1x² + 4 = 0 → x² = 40 → x = ±√40 ≈ ±6,32</li>
+                                <li>Distância entre apoios: 2 · 6,32 ≈ <strong>12,64 metros</strong></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DESAFIO ===== -->
+    <section id="desafio" class="section desafio">
+        <div class="container">
+            <h2 class="section-title">🧠 Desafio <span class="accent">Dinâmico</span></h2>
+            <p class="section-subtitle">Digite os coeficientes e descubra as propriedades da função</p>
+
+            <div class="challenge-wrapper">
+                <div class="challenge-form glass-card">
+                    <h3>Insira sua função</h3>
+                    <div class="formula-input">
+                        f(x) =
+                        <input type="number" id="inputA" placeholder="a" step="0.1" value="1">
+                        x² +
+                        <input type="number" id="inputB" placeholder="b" step="0.1" value="0">
+                        x +
+                        <input type="number" id="inputC" placeholder="c" step="0.1" value="0">
+                    </div>
+                    <button id="analyzeBtn" class="btn btn-primary">🔍 Analisar Função</button>
+
+                    <div id="challengeResult" class="result-box hidden">
+                        <p><strong>Tipo:</strong> <span id="resType"></span></p>
+                        <p><strong>Expressão:</strong> <span id="resExpr"></span></p>
+                        <p><strong>Raízes:</strong> <span id="resRoots"></span></p>
+                        <p><strong>Vértice:</strong> <span id="resVertex"></span></p>
+                    </div>
+                </div>
+
+                <div class="mini-graph glass-card">
+                    <h3>Visualização</h3>
+                    <canvas id="miniCanvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <p>🎓 <strong>MathLab</strong> — Aprendendo matemática de forma interativa</p>
+            <p>Desenvolvido com HTML5, CSS3 e JavaScript Vanilla | Hospedado no GitHub Pages</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
